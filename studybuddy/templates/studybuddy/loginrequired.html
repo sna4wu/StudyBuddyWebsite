@@ -1,0 +1,30 @@
+{% load socialaccount %}
+{% load bootstrap5 %}
+{% load static %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<html>
+    <head>
+        <title>Error</title>
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+    </head>
+    <body>
+        <link rel="stylesheet" href="{% static 'styles.css' %}">
+        <div align="center" style="padding-top: 20%;">
+            <img src="{% static 'images/Study_Buddy_Logo.png' %}" alt="StudyBuddy Logo" width="100" height="100"
+            class="d-inline-block align-top" />
+        <h1>Please Login!</h1>
+        {% if user.is_authenticated %}
+        <p>Login Successful.</p>
+        <p>Welcome to Study Buddies, {{ user.username }}!</p>
+        <p><button><a href="{% url 'logout' %}">Logout</a></button>
+    
+        {% else %}
+        <button><a href="{% provider_login_url 'google' %}">Login with Google</a></button>
+        {% endif %}
+        </div>
+
+    </body>
+</html>

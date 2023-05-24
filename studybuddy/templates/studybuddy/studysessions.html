@@ -1,0 +1,62 @@
+{% load socialaccount %}
+{% load bootstrap5 %}
+{% load static %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<html>
+    <head>
+        <title>StudyBuddy App</title>
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+    </head>
+    <head>
+        <div class="container">
+            <title>Study Buddy</title>
+            <nav class="navbar navbar-expand-md navbar-light">
+                <a href="{% url 'home' %}" class="navbar-brand">
+                    <img src="{% static 'images/Study_Buddy_Logo.png' %}" alt="StudyBuddy Logo" width="70" height="70"
+                    class="d-inline-block align-top" />
+                    StudyBuddy</a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#toggleMobileMenu"
+                    aria-controls="toggleMobileMenu"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="toggleMobileMenu">
+                    <ul class="navbar-nav ms-auto text-center">
+                        <li>
+                            <a class="nav-link" href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="{% url 'planner' %}">Planner</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="{% url 'studyposts' %}">Study Posts</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="{% url 'chat_index' %}">Chat</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </head>
+    <body>
+        {%for date in course_study_sessions.day%}
+                         <h3><a href="{% url 'viewprofile' date %}">{{date}}</a></h3>
+        {%endfor%}
+    </body>
+</html>
